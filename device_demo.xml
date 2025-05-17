@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <!-- Distributor demo data -->
+        <record id="distributor_1" model="nhaphanphoi.nhaphanphoi">
+            <field name="name">Nhà phân phối A</field>
+            <field name="tax_code">123456789</field>
+            <field name="address">123 Đường A, Quận 1</field>
+            <field name="phone">0901234567</field>
+            <field name="email">npp_a@example.com</field>
+            <field name="contact_person">Nguyễn Văn A</field>
+        </record>
+        <record id="distributor_2" model="nhaphanphoi.nhaphanphoi">
+            <field name="name">Nhà phân phối B</field>
+            <field name="tax_code">987654321</field>
+            <field name="address">456 Đường B, Quận 2</field>
+            <field name="phone">0907654321</field>
+            <field name="email">npp_b@example.com</field>
+            <field name="contact_person">Trần Thị B</field>
+        </record>
+
+        <!-- Storage demo data -->
+        <record id="storage_1" model="storage.storage">
+            <field name="code">ST001</field>
+            <field name="name">Kho A</field>
+            <field name="active">True</field>
+            <field name="create_date">2025-01-01 00:00:00</field>
+            <field name="position">Tầng 1</field>
+            <field name="manager">Nguyễn Văn A</field>
+        </record>
+        <record id="storage_2" model="storage.storage">
+            <field name="code">ST002</field>
+            <field name="name">Kho B</field>
+            <field name="active">True</field>
+            <field name="create_date">2025-01-02 00:00:00</field>
+            <field name="position">Tầng 2</field>
+            <field name="manager">Trần Thị B</field>
+        </record>
+
+        <!-- Device demo data -->
+        <record id="device_1" model="device.device">
+            <field name="device_code">DV001</field>
+            <field name="name">Thiết bị 1</field>
+            <field name="date_joined">2025-01-10</field>
+            <field name="storage_id" ref="storage_1"/>
+            <field name="active">True</field>
+            <field name="position">Kệ A1</field>
+            <field name="sl">10</field>
+            <field name="dg">1000.0</field>
+            <field name="distributor_id" ref="distributor_1"/>
+        </record>
+        <record id="device_2" model="device.device">
+            <field name="device_code">DV002</field>
+            <field name="name">Thiết bị 2</field>
+            <field name="date_joined">2025-01-15</field>
+            <field name="storage_id" ref="storage_2"/>
+            <field name="active">True</field>
+            <field name="position">Kệ B2</field>
+            <field name="sl">20</field>
+            <field name="dg">2000.0</field>
+            <field name="distributor_id" ref="distributor_2"/>
+        </record>
+    </data>
+</openerp>

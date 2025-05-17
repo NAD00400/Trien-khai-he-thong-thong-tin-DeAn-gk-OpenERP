@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data>
+        <menuitem id="menu_device_management" name="Quản lý thiết bị"/>
+
+        <menuitem id="menu_device_parent" name="Thiết bị" parent="menu_device_management"/>
+        <menuitem action="action_device" id="menu_device_list" parent="menu_device_parent" string="Danh sách nhập thiết bị"/>
+		<menuitem action="action_device_tree" id="menu_device_tree" parent="menu_device_parent" string="Danh sách nhập thiết bị"/>
+
+        <menuitem id="menu_storage_parent" name="Kho Thiết bị" parent="menu_device_management"/>
+        <menuitem action="action_storage" id="menu_storage_list" parent="menu_storage_parent" string="Danh sách kho thiết bị"/>
+		<menuitem action="action_storage_tree" id="menu_storage_tree" parent="menu_storage_parent" string="Danh sách kho thiết bị"/>
+
+         <menuitem id="menu_distributor_parent" name="Nhà phân phối" parent="menu_device_management"/>
+        <menuitem action="action_distributor_list" id="menu_distributor_list" parent="menu_distributor_parent" string="Danh sách nhà phân phối"/>   
+        
+
+    </data>
+</openerp>

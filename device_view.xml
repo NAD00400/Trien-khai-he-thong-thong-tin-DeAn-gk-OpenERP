@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- device tree view -->
+        <record model="ir.ui.view" id="view_device_tree_list">
+            <field name="name">device.tree</field>
+            <field name="model">device.device</field>
+            <field name="arch" type="xml">
+                <tree string="Danh sách nhập thiết bị">
+                    <field name="device_code"/>
+                    <field name="name"/>
+                    <field name="date_joined"/>
+                    <field name="position"/>
+                    <field name="storage_id"/>
+                    
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_device_tree_info">
+            <field name="name">device.tree</field>
+            <field name="model">device.device</field>
+            <field name="arch" type="xml">
+                <tree string="Thiết bị">
+                    <field name="device_code"/>
+                    <field name="name"/>
+                    <field name="date_joined"/>
+                    <field name="distributor_id"/>
+                    <field name="position"/>
+                    <field name="storage_id"/>
+                    <field name="status"/>
+                    <field name="sl"/>
+					<field name="dg"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- device Form View  -->
+        <record model="ir.ui.view" id="view_device_form">
+            <field name="name">device.form</field>
+            <field name="model">device.device</field>
+            <field name="arch" type="xml">
+                <form string="Thông tin thiết bị">
+                    <separator string="Thông tin cơ bản"/>
+                    <group colspan="4">
+                        <group>
+                            <field name="device_code"/>
+                            <field name="name"/>
+                            <field name="date_joined"/>
+                            <field name="distributor_id"/> 
+                        </group>
+                        <group>
+                            <field name="storage_id"/>
+                            <field name="position"/>
+                            <field name="active"/>
+                            <field name="sl"/>
+                            <field name="dg"/>
+                        </group>
+                    </group>
+
+                    
+                </form>
+            </field>
+        </record>                                    
+
+        <!-- device Search view  -->
+        <record model="ir.ui.view" id="view_device_search">
+            <field name="name">device.search</field>
+            <field name="model">device.device</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Tìm kiếm thiết bị">
+                    <field name="device_code"/>
+                    <field name="name"/>
+                    <field name="storage_id"/>
+                    <filter name="active" string="Đang hoạt động" domain="[('active', '=', True)]"/>
+                    <filter name="inactive" string="Đã ngừng hoạt động" domain="[('active', '=', False)]"/>
+                    <filter name="all" string="Tất cả device" domain="['|', ('active', '=', True), ('active', '=', False)]"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_device_tree">
+            <field name="name">Danh sách nhập thiết bị</field>
+            <field name="res_model">device.device</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_device_tree_list"/>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_device">
+            <field name="name">Thông tin nhập thiết bị</field>
+            <field name="res_model">device.device</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_device_tree_info"/>
+            <field name="domain">['|', ('active', '=', True), ('active', '=', False)]</field>
+        </record>
+<!-- kho thiết bị tree view -->
+        <record id="view_storage_tree_info" model="ir.ui.view">
+            <field name="name">storage.storage.tree</field>
+            <field name="model">storage.storage</field>
+            <field name="arch" type="xml">
+                <tree string="Kho thiết bị">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="create_date"/>
+                    <field name="status"/>
+                    <field name="position"/>
+                    <field name="manager"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_storage_tree_list" model="ir.ui.view">
+            <field name="name">storage.storage.tree.list</field>
+            <field name="model">storage.storage</field>
+            <field name="arch" type="xml">
+                <tree string="Danh sách kho thiết bị">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="create_date"/>
+                     <field name="status"/>
+                    <field name="position"/>
+                    <field name="manager"/>
+                </tree>
+            </field>
+        </record>
+        <!-- kho thiết bị form view -->
+        <record model="ir.ui.view" id="view_storage_form">
+            <field name="name">storage.form</field>
+            <field name="model">storage.storage</field>
+            <field name="arch" type="xml">
+                <form string="Thông tin kho thiết bị">
+                    <separator string="Thông tin cơ bản"/>
+                    <group colspan="4">
+                        <group>
+                            <field name="code"/>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="active"/>
+                            <field name="create_date"/>
+                        </group>
+                        <group>
+                            <field name="position"/>
+                            <field name="manager"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- kho thiết bị search view -->
+        <record model="ir.ui.view" id="view_storage_search">
+            <field name="name">storage.search</field>
+            <field name="model">storage.storage</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Tìm kiếm kho thiết bị">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <filter name="active" string="Kho thiết bị hoạt động" domain="[('active', '=', True)]"/>
+                    <filter name="inactive" string="Kho thiết bị không hoạt động" domain="[('active', '=', False)]"/>
+                    <filter name="all" string="Tất cả kho thiết bị" domain="['|', ('active', '=', True), ('active', '=', False)]"/>
+                </search>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_storage">
+            <field name="name">Thông tin kho thiết bị</field>
+            <field name="res_model">storage.storage</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">['|', ('active', '=', True), ('active', '=', False)]</field>
+        </record>
+        <record model="ir.actions.act_window" id="action_storage_tree">
+            <field name="name">Danh sách kho thiết bị</field>
+            <field name="res_model">storage.storage</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_storage_tree_list"/>
+        </record>
+        <!-- Nhà phân phối Tree View -->
+<record model="ir.ui.view" id="view_distributor_tree">
+    <field name="name">nhaphanphoi.tree</field>
+    <field name="model">nhaphanphoi.nhaphanphoi</field>
+    <field name="arch" type="xml">
+        <tree string="Danh sách nhà phân phối">
+            <field name="name"/>
+            <field name="tax_code"/>
+            <field name="phone"/>
+            <field name="contact_person"/>
+        </tree>
+    </field>
+</record>
+
+<!-- Nhà phân phối Form View -->
+<record model="ir.ui.view" id="view_distributor_form">
+    <field name="name">nhaphanphoi.form</field>
+    <field name="model">nhaphanphoi.nhaphanphoi</field>
+    <field name="arch" type="xml">
+        <form string="Thông tin nhà phân phối">
+            <group>
+                <field name="name"/>
+                <field name="tax_code"/>
+                <field name="address"/>
+                <field name="phone"/>
+                <field name="email"/>
+                <field name="contact_person"/>
+            </group>
+        </form>
+    </field>
+</record>
+
+<!-- Nhà phân phối Search View -->
+<record model="ir.ui.view" id="view_distributor_search">
+    <field name="name">nhaphanphoi.search</field>
+    <field name="model">nhaphanphoi.nhaphanphoi</field>
+    <field name="type">search</field>
+    <field name="arch" type="xml">
+        <search string="Tìm kiếm nhà phân phối">
+            <field name="name"/>
+            <field name="tax_code"/>
+        </search>
+    </field>
+</record>
+
+<!-- Action cho Nhà phân phối -->
+<record model="ir.actions.act_window" id="action_distributor_list">
+    <field name="name">Danh sách nhà phân phối</field>
+    <field name="res_model">nhaphanphoi.nhaphanphoi</field>
+    <field name="view_mode">tree,form</field>
+    <field name="view_id" ref="view_distributor_tree"/>
+</record>
+    </data>
+</openerp>
+
+
